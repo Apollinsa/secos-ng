@@ -57,7 +57,7 @@ Response: Stores the content of the global descriptor table register (GDTR) in t
 
 **Q4 : Que constate-t-on ? Que dire de la ségrégation mémoire mise en place
   par défaut par GRUB avec une telle configuration ?**
-
+Response: qu'il n'ya pas de séparation mémoire, et qu'on est dans un mode flat
 
 ## Une première reconfiguration de la GDT : en mode "flat"
 
@@ -96,6 +96,8 @@ système relatifs à la segmentation : GDTR, cs/ss/ds/etc.
   Intel à ce sujet ? Faire de même avec un descripteur de segment de données
   pour le sélecteur CS.**
 
+Responses : Cs dans Ds ca va boucler
+            Sinon pas possible
 
 ## Exemple d'utilisation de la segmentation pour la sécurité
 
@@ -127,8 +129,11 @@ Note : L'implémentation de `_memcpy8()` de SECOS repose sur l'instruction x86
   descripteur de données puis ré-exécuter la copie ` _memcpy8(dst, src,
   32);`. Que se passe-t-il ? Pourquoi n'y a-t-il pas de faute mémoire alors
   que le pointeur `dst` est NULL ?**
+Responses : Car maintenant la place est reserver
+
 
 **Q11 : De même, effectuer à présent une copie de 64 octets. Que se passe-t-il ? Pourquoi ?**
+Responses : La place n'est plus totalement reserver
 
 ## Première tentative de démarrage de code en ring 3
 
