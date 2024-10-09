@@ -39,6 +39,9 @@ point d'entrée du noyau.
   de base de la GDT en cours d'utilisation ainsi que sa "limite" (type utile :
   `gdt_reg_t`).**
 
+Response: Stores the content of the global descriptor table register (GDTR) in the destination operand. The destination operand specifies a memory location.
+          get_gdtr permet de connaître ou pointe GDTR
+
 **Q2\* :  Dans [`tp.c`](./tp.c), un exemple d'implémentation d'affichage du
   contenu de table de type GDT est fournie (fonction `print_gdt_content`).
   L'utiliser pour afficher le contenu de la GDT courante.**

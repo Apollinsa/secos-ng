@@ -47,6 +47,11 @@ kernel mem [0x302010 - 0x303820]
 déterminer la taille de la section `.mbh`  et `.stack` et en déduire d'où
 provient la valeur de point d'entrée à `0x302010` au lieu de `0x300000`.**
 
+** Réponses : Il y'a le .mbh sur 12 octet et la stack après 
+              Le .mbh gère le setup des disques http://poloastucien.free.fr/mbr_fat_secteurs_boot_h.html
+              Permet aussi de donnée le mindmap / c'est aussi la qu'il y'a la magic value qui définie le début du boot
+              .mbh .stack (0x2000) .text .roaddata . data .bss
+
 Note : il est possible de s'aider également de la page wiki sur les options de [linkage](https://github.com/agantet/secos-ng/wiki/Tooling#options-de-linkage).
 
 
@@ -101,8 +106,12 @@ debug("Reserved mem (at: 0xf0000):  before: 0x%x ", *ptr_in_reserved_mem); // re
 *ptr_in_reserved_mem = 0xaaaaaaaa;                           // write
 debug("after: 0x%x\n", *ptr_in_reserved_mem);                // check
 ```
-Le comportement observé semble-t-il cohérent ?
+** Réponses :   Le comportement observé semble-t-il cohérent ?
+                Fonctionne sur le premier car a les droits mais fonctionne pas sur le deuxième
+                Mais la lecture est possible
 
 **Q4 : Compléter la fonction `tp()` de [tp.c](./tp.c) pour essayer de lire ou
   écrire à une adresse en dehors de la mémoire physique disponible (128 MB).
   Que se passe-t-il ? Comment pourrait-on l'expliquer ?**
+  
+** Réponses : Ca fait un modulo pour l'acces en mémoire
